@@ -5,8 +5,33 @@ const app = express();
 
 app.get("/", (req,res,next)=>{
     res.json({
-        message: "Did you Get it!"});
-})
+        message: "Using GET",
+        metadata: {
+            host: process.env.host,
+            port: process.env.port,
+            method: req.method,
+        }
+    });
+});
+
+app.post("/",(req,res,next) => {
+    res.json({
+        message: "Using POST"
+    });
+});
+
+app.patch("/",(req, res, next) => {
+    res.json({
+        message: "Using Patch"
+    })
+});
+
+app.delete("/", (req, res, next) => {
+    res.json({
+        message: "Using Delete"
+    })
+});
+// post, patch, delete
 
 // middleware modules for error handling
 app.use((req, res, next) => {
